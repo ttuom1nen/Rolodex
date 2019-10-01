@@ -19,6 +19,10 @@ class App extends React.Component {
       .then(json => this.setState({ monsters: json }));
   }
 
+  handleChange = e => {
+    this.setState({ searchField: e.target.value });
+  };
+
   render() {
     const { monsters, searchField } = this.state;
     const filteredMonsters = monsters.filter(monster =>
@@ -29,7 +33,7 @@ class App extends React.Component {
       <div className="App">
         <SearchBox
           placeholder="Search Robots"
-          handleChange={e => this.setState({ searchField: e.target.value })}
+          handleChange={this.handleChange}
         />
         <CardList monsters={filteredMonsters} />
       </div>
